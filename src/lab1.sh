@@ -9,7 +9,7 @@ PROJECT_DIR="/tmp/project"
 # 1. Create Directory Structure
 # Create the main 'project' directory and its subdirectories: 'data', 'scripts', 'logs', and 'backup'.
 echo "Creating directory structure..."
-# TODO: create the required directories under "${PROJECT_DIR}"
+
 mkdir -p "$PROJECT_DIR/data"
 mkdir -p "$PROJECT_DIR/scripts"
 mkdir -p "$PROJECT_DIR/logs"
@@ -18,7 +18,7 @@ mkdir -p "$PROJECT_DIR/backup"
 # 2. File Operations
 # In the 'data' directory, create five text files and add sample content to each.
 echo "Creating files in the 'data' directory..."
-# TODO: create file1.txt, file2.txt, file3.txt, file4.txt, and file5.txt in "${PROJECT_DIR}/data"
+
 for i in {1..5}  # Hi Professor If you are reviewing this I used for loops to create Five files 
 do 
 	touch "${PROJECT_DIR}/data/file$i.txt"
@@ -27,19 +27,23 @@ done
 
 # Copy 'file1.txt' to the 'backup' directory.
 echo "Copying 'file1.txt' to 'backup' directory..."
-# TODO: copy file1.txt into "${PROJECT_DIR}/backup"
+
+cp "${PROJECT_DIR}/data/file1.txt" "${PROJECT_DIR}/backup"
 
 # Rename 'file3.txt' to 'file3_renamed.txt'.
 echo "Renaming 'file3.txt' to 'file3_renamed.txt'..."
-# TODO: rename file3.txt to file3_renamed.txt in the data directory
+
+mv "${PROJECT_DIR}/data/file3.txt"  "${PROJECT_DIR}/data/file3_renamed.txt"
 
 # Move 'file4.txt' and 'file5.txt' to the 'logs' directory. Force the move to avoid prompts.
 echo "Moving 'file4.txt' and 'file5.txt' to 'logs' directory..."
-# TODO: move file4.txt and file5.txt into "${PROJECT_DIR}/logs"
+mv -f "${PROJECT_DIR}/data/file4.txt"  "${PROJECT_DIR}/logs"
+mv -f "${PROJECT_DIR}/data/file5.txt"  "${PROJECT_DIR}/logs" 
 
 # Delete 'file2.txt' from the 'data' directory.
 echo "Deleting 'file2.txt' from 'data' directory..."
-# TODO: delete file2.txt from the data directory
+rm "${PROJECT_DIR}/data/file2.txt" 
+
 
 # 3. Directory Management
 # List all files and directories within the 'project' directory with detailed information.
