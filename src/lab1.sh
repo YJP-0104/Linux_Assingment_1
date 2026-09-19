@@ -48,7 +48,7 @@ rm "${PROJECT_DIR}/data/file2.txt"
 # 3. Directory Management
 # List all files and directories within the 'project' directory with detailed information.
 echo "Listing all files and directories with detailed information..."
-# TODO: run a detailed listing of "${PROJECT_DIR}"
+ls -l -A -h -R "${PROJECT_DIR}"   # TODO: run a detailed listing of "${PROJECT_DIR}"
 
 # Display the total size of the 'data' and 'logs' directories.
 echo "Displaying total size of 'data' and 'logs' directories..."
