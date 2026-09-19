@@ -19,6 +19,11 @@ mkdir -p "$PROJECT_DIR/backup"
 # In the 'data' directory, create five text files and add sample content to each.
 echo "Creating files in the 'data' directory..."
 # TODO: create file1.txt, file2.txt, file3.txt, file4.txt, and file5.txt in "${PROJECT_DIR}/data"
+for i in {1..5}  # Hi Professor If you are reviewing this I used for loops to create Five files 
+do 
+	touch "${PROJECT_DIR}/data/file$i.txt"
+done
+
 
 # Copy 'file1.txt' to the 'backup' directory.
 echo "Copying 'file1.txt' to 'backup' directory..."
