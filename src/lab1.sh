@@ -52,19 +52,23 @@ ls -l -A -h -R "${PROJECT_DIR}"   # TODO: run a detailed listing of "${PROJECT_D
 
 # Display the total size of the 'data' and 'logs' directories.
 echo "Displaying total size of 'data' and 'logs' directories..."
-# TODO: show the combined size of "${PROJECT_DIR}/data" and "${PROJECT_DIR}/logs"
+du -s -h -c "${PROJECT_DIR}/data" "${PROJECT_DIR}/logs"
 
 # Identify and display the 10 largest files and directories within the 'project' directory.
 echo "Displaying the 10 largest files and directories in 'project'..."
+du -a -h --max-depth=3 "${PROJECT_DIR}"
 # TODO: show the 10 largest items under "${PROJECT_DIR}"
 
 # 4. File Permissions and Ownership
 # Set specific file permissions 644 for 'file1.txt' in the 'backup' directory.
 echo "Setting file permissions 644 for 'file1.txt'..."
-# TODO: set permissions for "${PROJECT_DIR}/backup/file1.txt" to 644
+chmod 644 "${PROJECT_DIR}"
 
 # Set specific file permissions 644 for 'file3_renamed.txt' in the 'logs' directory.
 echo "Setting file permissions 644 for 'file3_renamed.txt'..."
+cp "${PROJECT_DIR}/data/file3_renamed.txt"  "${PROJECT_DIR}/logs" # Copied file from data directory to log 
+chmod 644 "${PROJECT_DIR}/logs/file3_renamed.txt"
+
 # TODO: set permissions for "${PROJECT_DIR}/logs/file3_renamed.txt" to 644
 
 # Change the ownership of 'file4.txt' in the 'logs' directory to another user and group (nobody:nogroup).
