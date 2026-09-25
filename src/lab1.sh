@@ -86,25 +86,29 @@ ls -la "${PROJECT_DIR}/backup/"
 # 6. System Monitoring and Process Management
 # Display the disk usage of the entire filesystem.
 echo "Displaying disk usage of the filesystem..."
-du -h 
+df -h
 
 
 # List all running processes and specifically identify the process IDs related to Bash.
 echo "Listing all running processes and finding PID of 'bash'..."
-# TODO: list processes and filter for bash
+ps aux | grep '[b]ash' 
 
 # 7. Automated Backup
 # Create a compressed archive of the 'backup' directory and store it within the same directory.
 # Use the current date to name the archive file.
 echo "Creating a compressed archive of the 'backup' directory..."
-# TODO: create a dated archive of "${PROJECT_DIR}/backup" inside "${PROJECT_DIR}/backup"
-
+tar -czf "${PROJECT_DIR}/backup/$(date +%Y-%m-%d).tar.gz" --exclude="$(date +%Y-%m-%d).tar.gz" -C "${PROJECT_DIR}" backup
 # 8. Log Completion
 # Create a log message indicating the completion of the assignment tasks and store it in a 'README.md' file inside the 'project' directory.
 echo "Logging completion message..."
-# TODO: write a one-line completion message to "${PROJECT_DIR}/README.md"
+echo "Completed all the task" >> "${PROJECT_DIR}/README.md"
 
 # 9. Directory Existence Verification
 # Add a verification step at the end of the script to check if the 'data' directory exists. If it doesn’t, the script should log an error message and exit.
 echo "Verifying final directory state..."
-# TODO: confirm that "${PROJECT_DIR}/data" exists; if not, print an error and exit
+if [ ! -d "${PROJECT_DIR}/data" ]; then
+	echo "Directory is not preset at the desitination '${PROJECT_DIR}/data'">&2
+	exit 1 
+fi
+echo "Verification successful: 'data' directory is present."
+
