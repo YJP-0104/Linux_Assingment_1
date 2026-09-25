@@ -62,32 +62,32 @@ du -a -h --max-depth=3 "${PROJECT_DIR}"
 # 4. File Permissions and Ownership
 # Set specific file permissions 644 for 'file1.txt' in the 'backup' directory.
 echo "Setting file permissions 644 for 'file1.txt'..."
-chmod 644 "${PROJECT_DIR}"
+chmod 644 "${PROJECT_DIR}/backup/file1.txt"
 
 # Set specific file permissions 644 for 'file3_renamed.txt' in the 'logs' directory.
 echo "Setting file permissions 644 for 'file3_renamed.txt'..."
-cp "${PROJECT_DIR}/data/file3_renamed.txt"  "${PROJECT_DIR}/logs" # Copied file from data directory to log 
+cp "${PROJECT_DIR}/data/file3_renamed.txt" "${PROJECT_DIR}/logs/"
 chmod 644 "${PROJECT_DIR}/logs/file3_renamed.txt"
-
-# TODO: set permissions for "${PROJECT_DIR}/logs/file3_renamed.txt" to 644
 
 # Change the ownership of 'file4.txt' in the 'logs' directory to another user and group (nobody:nogroup).
 echo "Changing ownership of 'file4.txt'..."
-# TODO: change ownership of "${PROJECT_DIR}/logs/file4.txt" to nobody:nogroup
-
+sudo chown :nogroup "${PROJECT_DIR}/logs/file4.txt"
 # 5. Symbolic Links
 # Create a symbolic link in the 'scripts' directory pointing to 'backup/file1.txt' in the 'backup' directory.
 echo "Creating symbolic link 'file1_link.txt' in 'scripts' directory..."
-# TODO: create a symlink named file1_link.txt in "${PROJECT_DIR}/scripts" that points to ../backup/file1.txt
+
+ln -s "${PROJECT_DIR}/backup/file1.txt" "${PROJECT_DIR}/scripts/file1_link.txt"
 
 # Manually verify that (use ls) the symbolic link has been created and points to the correct target.
 echo "Verifying the symbolic link of file1.txt..."
+ls -la "${PROJECT_DIR}/backup/"
 # TODO: use ls or readlink to confirm the symlink target
 
 # 6. System Monitoring and Process Management
 # Display the disk usage of the entire filesystem.
 echo "Displaying disk usage of the filesystem..."
-# TODO: show filesystem disk usage
+du -h 
+
 
 # List all running processes and specifically identify the process IDs related to Bash.
 echo "Listing all running processes and finding PID of 'bash'..."
