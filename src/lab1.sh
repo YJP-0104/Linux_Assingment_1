@@ -66,6 +66,7 @@ chmod 644 "${PROJECT_DIR}/backup/file1.txt"
 
 # Set specific file permissions 644 for 'file3_renamed.txt' in the 'logs' directory.
 echo "Setting file permissions 644 for 'file3_renamed.txt'..."
+chmod 644 "${PROJECT_DIR}/data/file3_renamed.txt"
 cp "${PROJECT_DIR}/data/file3_renamed.txt" "${PROJECT_DIR}/logs/"
 chmod 644 "${PROJECT_DIR}/logs/file3_renamed.txt"
 
@@ -99,12 +100,15 @@ ps aux | grep '[b]ash'
 # Use the current date to name the archive file.
 echo "Creating a compressed archive of the 'backup' directory..."
 
-tar --exclude="backup_*.tar.gz" -zcvf "${PROJECT_DIR}/backup/backup_$(date +%Y%m%d).tar.gz" -C "${PROJECT_DIR}" backup
+tar --exclude="backup_*.tar.gz" -zcvf "${PROJECT_DIR}/backup/backup_$(date +%Y%m%d).tar.gz" -C "${PROJECT_DIR}" . 
+
 
 # 8. Log Completion
 # Create a log message indicating the completion of the assignment tasks and store it in a 'README.md' file inside the 'project' directory.
 echo "Logging completion message..."
-echo "Completed all the task" > "${PROJECT_DIR}/README.md"
+touch "${PROJECT_DIR}/README.md"
+
+echo "Assignment completed" > "${PROJECT_DIR}/README.md" 
 
 # 9. Directory Existence Verification
 # Add a verification step at the end of the script to check if the 'data' directory exists. If it doesn’t, the script should log an error message and exit.
