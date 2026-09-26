@@ -56,7 +56,7 @@ du -s -h -c "${PROJECT_DIR}/data" "${PROJECT_DIR}/logs"
 
 # Identify and display the 10 largest files and directories within the 'project' directory.
 echo "Displaying the 10 largest files and directories in 'project'..."
-du -a -h --max-depth=3 "${PROJECT_DIR}"
+du -a -h --max-depth=3 "${PROJECT_DIR}" | sort -rh | head -n 10
 # TODO: show the 10 largest items under "${PROJECT_DIR}"
 
 # 4. File Permissions and Ownership
@@ -71,16 +71,17 @@ chmod 644 "${PROJECT_DIR}/logs/file3_renamed.txt"
 
 # Change the ownership of 'file4.txt' in the 'logs' directory to another user and group (nobody:nogroup).
 echo "Changing ownership of 'file4.txt'..."
-sudo chown :nogroup "${PROJECT_DIR}/logs/file4.txt"
+sudo chown nobody:nogroup "${PROJECT_DIR}/logs/file4.txt"
 # 5. Symbolic Links
 # Create a symbolic link in the 'scripts' directory pointing to 'backup/file1.txt' in the 'backup' directory.
 echo "Creating symbolic link 'file1_link.txt' in 'scripts' directory..."
 
-ln -s "${PROJECT_DIR}/backup/file1.txt" "${PROJECT_DIR}/scripts/file1_link.txt"
+ln -sf "../backup/file1.txt" "${PROJECT_DIR}/scripts/file1_link.txt"
 
 # Manually verify that (use ls) the symbolic link has been created and points to the correct target.
 echo "Verifying the symbolic link of file1.txt..."
-ls -la "${PROJECT_DIR}/backup/"
+#ls -la "${PROJECT_DIR}/backup/"
+ls -la "${PROJECT_DIR}/scripts/file1_link.txt"
 # TODO: use ls or readlink to confirm the symlink target
 
 # 6. System Monitoring and Process Management
@@ -103,7 +104,7 @@ tar --exclude="backup_*.tar.gz" -zcvf "${PROJECT_DIR}/backup/backup_$(date +%Y%m
 # 8. Log Completion
 # Create a log message indicating the completion of the assignment tasks and store it in a 'README.md' file inside the 'project' directory.
 echo "Logging completion message..."
-echo "Completed all the task" >> "${PROJECT_DIR}/README.md"
+echo "Completed all the task" > "${PROJECT_DIR}/README.md"
 
 # 9. Directory Existence Verification
 # Add a verification step at the end of the script to check if the 'data' directory exists. If it doesn’t, the script should log an error message and exit.
